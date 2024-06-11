@@ -1,3 +1,8 @@
+import 'dart:developer';
+
+import 'package:admin/models/api_response.dart';
+import 'package:admin/utility/snack_bar_helper.dart';
+
 import '../../../models/brand.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -15,24 +20,43 @@ class BrandProvider extends ChangeNotifier {
   SubCategory? selectedSubCategory;
   Brand? brandForUpdate;
 
-
-
-
   BrandProvider(this._dataProvider);
 
+  addBrand() async {
+    try {
+      Map<String, dynamic> brand = {'name': brandNameCtrl.text, 'subcategoryId': selectedSubCategory?.sId};
+      final response = await service.addItem(endpointUrl: 'brands', itemData: brand);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          log('Brand added');
+          _dataProvider.getAllBrands();
+        } else {
+          SnackBarHelper.showErrorSnackBar('Failed to add brand: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
 
+  updateBrand() async {
+    try {
 
-
-  //TODO: should complete addBrand
-
-
-
-  //TODO: should complete updateBrand
-
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
 
   //TODO: should complete submitBrand
-
-
 
   //TODO: should complete deleteBrand
 

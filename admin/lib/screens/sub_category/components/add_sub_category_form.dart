@@ -17,7 +17,7 @@ class SubCategorySubmitForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.subCategoryProvider.setDataForUpdateCategory(subCategory);
+    context.subCategoryProvider.setDataForUpdateSubCategory(subCategory);
     var size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Form(
@@ -98,7 +98,7 @@ class SubCategorySubmitForm extends StatelessWidget {
                       // Validate and save the form
                       if (context.subCategoryProvider.addSubCategoryFormKey.currentState!.validate()) {
                         context.subCategoryProvider.addSubCategoryFormKey.currentState!.save();
-                        //TODO: should complete call submitSubCategory
+                        context.subCategoryProvider.submitSubCategory();
                         Navigator.of(context).pop();
                       }
                     },

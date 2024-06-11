@@ -89,12 +89,31 @@ class CategoryProvider extends ChangeNotifier {
     }
   }
 
-  //TODO: should complete submitCategory
+  submitCategory() {
+    if (categoryForUpdate != null) {
+      updateCategory();
+    } else {
+      addCategory();
+    }
+  }
 
-  //TODO: should complete deleteCategory
-
-  //TODO: should complete setDataForUpdateCategory
-
+  deleteCategory(Category category) async {
+    try {
+      Response response = await service.deleteItem(endpointUrl: 'categories', itemId: category.sId ?? '');
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          SnackBarHelper.showSuccessSnackBar('Category Deleted Successfully');
+          _dataProvider.getAllCategory();
+        } else {
+          SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+        }
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 
   void pickImage() async {
     final ImagePicker picker = ImagePicker();
@@ -124,7 +143,6 @@ class CategoryProvider extends ChangeNotifier {
     return form;
   }
 
-  //? set data for update on editing
   setDataForUpdateCategory(Category? category) {
     if (category != null) {
       clearFields();
