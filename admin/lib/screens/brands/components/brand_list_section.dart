@@ -1,3 +1,5 @@
+import 'package:admin/utility/extensions.dart';
+
 import '../../../core/data/data_provider.dart';
 import 'add_brand_form.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +57,7 @@ class BrandListSection extends StatelessWidget {
                     (index) => brandDataRow(dataProvider.brands[index], index + 1, edit: () {
                       showBrandForm(context, dataProvider.brands[index]);
                     }, delete: () {
-                      //TODO: should complete deleteBrand
+                      context.brandProvider.deleteBrand(dataProvider.brands[index]);
                     }),
                   ),
                 );
