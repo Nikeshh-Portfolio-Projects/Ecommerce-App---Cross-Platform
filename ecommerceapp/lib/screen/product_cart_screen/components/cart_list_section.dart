@@ -1,3 +1,5 @@
+import 'package:ecommerceapp/utility/extensions.dart';
+
 import '../../../utility/utility_extention.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cart/model/cart_model.dart';
@@ -109,7 +111,7 @@ class CartListSection extends StatelessWidget {
                         IconButton(
                           splashRadius: 10.0,
                           onPressed: () {
-                            //TODO: should complete call updateCart decrement
+                            context.cartProvider.updateCart(cartItem, -1);
                           },
                           icon: const Icon(
                             Icons.remove,
@@ -126,7 +128,7 @@ class CartListSection extends StatelessWidget {
                         IconButton(
                           splashRadius: 10.0,
                           onPressed: () {
-                            //TODO: should complete updateCart increment
+                            context.cartProvider.updateCart(cartItem, 1);
                           },
                           icon: const Icon(Icons.add, color: Color(0xFFEC6813)),
                         ),

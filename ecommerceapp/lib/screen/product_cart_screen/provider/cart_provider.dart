@@ -37,28 +37,85 @@ class CartProvider extends ChangeNotifier {
 
   CartProvider(this._userProvider);
 
-  //TODO: should complete updateCart
+  void updateCart(CartModel cartItem, int quantity) {
+    quantity = cartItem.quantity + quantity;
+    flutterCart.updateQuantity(cartItem.productId, cartItem.variants, quantity);
+    notifyListeners();
+  }
 
-  //TODO: should complete getCartSubTotal
+  double getCartSubTotal() {
+    return flutterCart.subtotal;
+  }
 
-  //TODO: should complete getGrandTotal
+  double getGrandTotal() {
+    return getCartSubTotal() - couponCodeDiscount;
+  }
 
-  //TODO: should complete getCartItems
+  getCartItems() {
+    myCartItems = flutterCart.cartItemsList;
+    notifyListeners();
+  }
 
-  //TODO: should complete clearCartItems
+  clearCartItems() {
+    flutterCart.clearCart();
+    notifyListeners();
+  }
 
+  checkCoupon() async {
+    try {
+      if (couponController.text.isEmpty) {
+        SnackBarHelper.showErrorSnackBar('Enter a coupon code');
+        return;
+      }
+      List<String> productIds = myCartItems.map((cartItem) => cartItem.productId).toList();
+      Map<String, dynamic> couponData = {
+        "couponCode": couponController.text,
+        "purchaseAmount": getCartSubTotal(),
+        "productIds": productIds
+      };
+      final response = await service.addItem(endpointUrl: 'couponCodes/check-coupon', itemData: couponData);
+      if (response.isOk) {
+        final ApiResponse<Coupon> apiResponse = ApiResponse<Coupon>.fromJson(response.body, (json) => Coupon.fromJson(json as Map<String, dynamic>));
+        if (apiResponse.success == true) {
+          Coupon? coupon = apiResponse.data;
+          if (coupon != null) {
+            couponApplied = coupon;
+            couponCodeDiscount = getCouponDiscountAmount(coupon);
+          }
+          SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+          log('Coupon is valid');
+        } else {
+          SnackBarHelper.showErrorSnackBar('Failed to validate Coupon: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+      }
+      notifyListeners();
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
 
-  //TODO: should complete checkCoupon
-
-  //TODO: should complete getCouponDiscountAmount
-
+  double getCouponDiscountAmount(Coupon coupon) {
+    double discountAmount = 0;
+    String discountType = coupon.discountType ?? 'fixed';
+    if (discountType == 'fixed') {
+      discountAmount = coupon.discountAmount ?? 0;
+      return discountAmount;
+    } else {
+      double discountPercentage = coupon.discountAmount ?? 0;
+      double amountAfterDiscountPercentage = getCartSubTotal() * (discountPercentage / 100);
+      return amountAfterDiscountPercentage;
+    }
+  }
 
   //TODO: should complete submitOrder
 
   //TODO: should complete addOrder
 
   //TODO: should complete cartItemToOrderItem
-
 
   clearCouponDiscount() {
     couponApplied = null;
