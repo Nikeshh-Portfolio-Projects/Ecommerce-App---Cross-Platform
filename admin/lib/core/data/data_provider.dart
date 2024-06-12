@@ -66,6 +66,8 @@ class DataProvider extends ChangeNotifier {
     getAllBrands();
     getAllVariantType();
     getAllVariant();
+    getAllPosters();
+    getAllCoupons();
   }
 
   Future<List<Category>> getAllCategory({ bool showSnack = false }) async {
@@ -251,13 +253,63 @@ class DataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete getAllCoupons
+  Future<List<Coupon>> getAllCoupons({ bool showSnack = false }) async {
+    try {
+      Response response = await service.getItems(endpointUrl: 'couponCodes');
+      if (response.isOk) {
+        ApiResponse<List<Coupon>> apiResponse = ApiResponse<List<Coupon>>.fromJson(response.body, (json) => (json as List).map((item) => Coupon.fromJson(item)).toList());
+        _allCoupons = apiResponse.data ?? [];
+        _filteredCoupons = List.from(_allCoupons);
+        notifyListeners();
+        if (showSnack) SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+      }
+    } catch (e) {
+      if (showSnack) SnackBarHelper.showErrorSnackBar(e.toString());
+      rethrow;
+    }
+    return _filteredCoupons;
+  }
 
-  //TODO: should complete filterCoupons
+  void filterCoupons(String keyword) {
+    if (keyword.isEmpty) {
+      _filteredCoupons = List.from(_allCoupons);
+    } else {
+      final lowerKeyword = keyword.toLowerCase();
+      _filteredCoupons = _allCoupons.where((coupon) {
+        return (coupon.couponCode ?? '').toLowerCase().contains(lowerKeyword);
+      }).toList();
+    }
+    notifyListeners();
+  }
 
-  //TODO: should complete getAllPosters
+  Future<List<Poster>> getAllPosters({ bool showSnack = false }) async {
+    try {
+      Response response = await service.getItems(endpointUrl: 'posters');
+      if (response.isOk) {
+        ApiResponse<List<Poster>> apiResponse = ApiResponse<List<Poster>>.fromJson(response.body, (json) => (json as List).map((item) => Poster.fromJson(item)).toList());
+        _allPosters = apiResponse.data ?? [];
+        _filteredPosters = List.from(_allPosters);
+        notifyListeners();
+        if (showSnack) SnackBarHelper.showSuccessSnackBar(apiResponse.message);
+      }
+    } catch (e) {
+      if (showSnack) SnackBarHelper.showErrorSnackBar(e.toString());
+      rethrow;
+    }
+    return _filteredPosters;
+  }
 
-  //TODO: should complete filterPosters
+  void filterPosters(String keyword) {
+    if (keyword.isEmpty) {
+      _filteredPosters = List.from(_allPosters);
+    } else {
+      final lowerKeyword = keyword.toLowerCase();
+      _filteredPosters = _allPosters.where((poster) {
+        return (poster.posterName ?? '').toLowerCase().contains(lowerKeyword);
+      }).toList();
+    }
+    notifyListeners();
+  }
 
   //TODO: should complete getAllNotifications
 

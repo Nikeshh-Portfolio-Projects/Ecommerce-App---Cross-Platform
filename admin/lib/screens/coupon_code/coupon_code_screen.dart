@@ -1,3 +1,5 @@
+import 'package:admin/utility/extensions.dart';
+
 import 'components/coupon_code_header.dart';
 import 'components/coupon_list_section.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +56,7 @@ class CouponCodeScreen extends StatelessWidget {
                           Gap(20),
                           IconButton(
                               onPressed: () {
-                                //TODO: should complete call getAllCoupons
+                                context.dataProvider.getAllCoupons(showSnack: true);
                               },
                               icon: Icon(Icons.refresh)),
                         ],
