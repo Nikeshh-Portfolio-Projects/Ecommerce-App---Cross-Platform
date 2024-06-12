@@ -56,7 +56,7 @@ class BrandProvider extends ChangeNotifier {
           if (apiResponse.success == true) {
             clearFields();
             SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-            log('Brand Added');
+            log('Brand Updated');
             _dataProvider.getAllBrands();
           } else {
             SnackBarHelper.showErrorSnackBar('Failed to add Brand: ${apiResponse.message}');

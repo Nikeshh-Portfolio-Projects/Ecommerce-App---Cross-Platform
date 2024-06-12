@@ -53,7 +53,7 @@ class VariantsTypeProvider extends ChangeNotifier {
           if (apiResponse.success == true) {
             clearFields();
             SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
-            log('Variant Type Added');
+            log('Variant Type Updated');
             _dataProvider.getAllVariantType();
           } else {
             SnackBarHelper.showErrorSnackBar('Failed to add Variant Types: ${apiResponse.message}');
