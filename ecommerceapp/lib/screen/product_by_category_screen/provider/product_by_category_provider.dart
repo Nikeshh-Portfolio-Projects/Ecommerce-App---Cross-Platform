@@ -53,7 +53,16 @@ class ProductByCategoryProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: should complete sortProducts
+  void sortProducts({ required bool ascending }) {
+    filteredProduct.sort((a, b) {
+      if (ascending) {
+        return a.price!.compareTo(b.price ?? 0);
+      } else {
+        return b.price!.compareTo(a.price ?? 0);
+      }
+    });
+    notifyListeners();
+  }
 
   void updateUI() {
     notifyListeners();
