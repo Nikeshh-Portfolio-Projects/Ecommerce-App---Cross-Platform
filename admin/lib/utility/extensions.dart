@@ -1,7 +1,7 @@
 import '../screens/brands/provider/brand_provider.dart';
 import '../screens/category/provider/category_provider.dart';
 import '../screens/coupon_code/provider/coupon_code_provider.dart';
-import '../screens/dashboard/provider/dash_board_provider.dart';
+import '../screens/dashboard/provider/dashboard_provider.dart';
 import '../screens/main/provider/main_screen_provider.dart';
 import '../screens/notification/provider/notification_provider.dart';
 import '../screens/posters/provider/poster_provider.dart';

@@ -1,4 +1,9 @@
+import 'dart:developer';
 import 'dart:io';
+import 'package:admin/models/variant.dart';
+import 'package:admin/utility/snack_bar_helper.dart';
+
+import '../../../models/api_response.dart';
 import '../../../models/brand.dart';
 import '../../../models/sub_category.dart';
 import '../../../models/variant_type.dart';
@@ -38,20 +43,127 @@ class DashBoardProvider extends ChangeNotifier {
   List<Brand> brandsBySubCategory = [];
   List<String> variantsByVariantType = [];
 
-
   DashBoardProvider(this._dataProvider);
 
-  //TODO: should complete addProduct
+  addProduct() async {
+    try {
+      if (selectedMainImage == null) {
+        SnackBarHelper.showErrorSnackBar('Please choose a image!');
+        return;
+      }
+      Map<String, dynamic> formDataMap = {
+        'name': productNameCtrl.text,
+        'description': productDescCtrl.text,
+        'proCategoryId': selectedCategory?.sId ?? '',
+        'proSubCategoryId': selectedSubCategory?.sId ?? '',
+        'proBrandId': selectedBrand?.sId ?? '',
+        'price': productPriceCtrl.text,
+        'offerPrice': productOffPriceCtrl.text.isEmpty ? productPriceCtrl.text : productOffPriceCtrl.text,
+        'quantity': productQntCtrl.text,
+        'proVariantTypeId': selectedVariantType?.sId,
+        'proVariantId': selectedVariants
+      };
 
-  //TODO: should complete updateProduct
+      final FormData form = await createFormDataForMultipleImage(imgXFiles: [
+        {'image1': mainImgXFile},
+        {'image2': secondImgXFile},
+        {'image3': thirdImgXFile},
+        {'image4': fourthImgXFile},
+        {'image5': fifthImgXFile},
+      ], formData: formDataMap);
 
+      if (productForUpdate != null) {}
+      final response = await service.addItem(endpointUrl: 'products', itemData: form);
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          _dataProvider.getAllProduct();
+          log('Products Added');
+        } else {
+          SnackBarHelper.showErrorSnackBar('Failed to add products: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
 
-  //TODO: should complete submitProduct
+  updateProduct() async {
+    try {
+      Map<String, dynamic> formDataMap = {
+        'name': productNameCtrl.text,
+        'description': productDescCtrl.text,
+        'proCategoryId': selectedCategory?.sId ?? '',
+        'proSubCategoryId': selectedSubCategory?.sId ?? '',
+        'proBrandId': selectedBrand?.sId ?? '',
+        'price': productPriceCtrl.text,
+        'offerPrice': productOffPriceCtrl.text.isEmpty ? productPriceCtrl.text : productOffPriceCtrl.text,
+        'quantity': productQntCtrl.text,
+        'proVariantTypeId': selectedVariantType?.sId ?? '',
+        'proVariantId': selectedVariants
+      };
 
+      final FormData form =await createFormDataForMultipleImage(imgXFiles: [
+        {'image1': mainImgXFile},
+        {'image2': secondImgXFile},
+        {'image3': thirdImgXFile},
+        {'image4': fourthImgXFile},
+        {'image5': fifthImgXFile},
+      ], formData: formDataMap);
+      if (productForUpdate != null) {}
+      final response = await service.updateItem(endpointUrl: 'products', itemData: form, itemId: '${productForUpdate?.sId}');
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          clearFields();
+          SnackBarHelper.showSuccessSnackBar('${apiResponse.message}');
+          log('Products Added');
+          clearFields();
+          _dataProvider.getAllProduct();
+        } else {
+          SnackBarHelper.showErrorSnackBar('Failed to add products: ${apiResponse.message}');
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      SnackBarHelper.showErrorSnackBar('An error occurred: $e');
+      rethrow;
+    }
+  }
 
-  //TODO: should complete deleteProduct
+  submitProduct() {
+    if (productForUpdate != null) {
+      updateProduct();
+    } else {
+      addProduct();
+    }
+  }
 
-
+  deleteProduct(Product product) async {
+    try {
+      Response response = await service.deleteItem(endpointUrl: 'products', itemId: product.sId ?? '');
+      if (response.isOk) {
+        ApiResponse apiResponse = ApiResponse.fromJson(response.body, null);
+        if (apiResponse.success == true) {
+          SnackBarHelper.showSuccessSnackBar('Product Deleted Successfully');
+          _dataProvider.getAllProduct();
+        }
+      } else {
+        SnackBarHelper.showErrorSnackBar('Error ${response.body?['message'] ?? response.statusText}');
+      }
+    } catch (e) {
+      print(e);
+      rethrow;
+    }
+  }
 
   void pickImage({required int imageCardNumber}) async {
     final ImagePicker picker = ImagePicker();
@@ -105,14 +217,33 @@ class DashBoardProvider extends ChangeNotifier {
     return form;
   }
 
+  filterSubcategory(Category category) {
+    selectedSubCategory = null;
+    selectedBrand = null;
+    selectedCategory = category;
+    subCategoriesByCategory.clear();
+    final newList = _dataProvider.subCategories.where((subcategory) => subcategory.categoryId?.sId == category.sId).toList();
+    subCategoriesByCategory = newList;
+    notifyListeners();
+  }
 
-  //TODO: should complete filterSubcategory
+  filterBrand(SubCategory subCategory) {
+    selectedBrand = null;
+    selectedSubCategory = subCategory;
+    brandsBySubCategory.clear();
+    final newList = _dataProvider.brands.where((brand) => brand.subcategoryId?.sId == subCategory.sId).toList();
+    brandsBySubCategory = newList;
+    notifyListeners();
+  }
 
-  //TODO: should complete filterBrand
-
-  //TODO: should complete filterVariant
-
-
+  filterVariant(VariantType variantType) {
+    selectedVariants = [];
+    selectedVariantType = variantType;
+    final newList = _dataProvider.variants.where((variant) => variant.variantTypeId?.sId == variantType.sId).toList();
+    final List<String> variantNames = newList.map((variant) => variant.name ?? '').toList();
+    variantsByVariantType = variantNames;
+    notifyListeners();
+  }
 
   setDataForUpdateProduct(Product? product) {
     if (product != null) {

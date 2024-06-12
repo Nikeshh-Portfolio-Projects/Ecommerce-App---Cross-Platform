@@ -3,7 +3,7 @@ import '../../../models/category.dart';
 import '../../../models/product.dart';
 import '../../../models/sub_category.dart';
 import '../../../models/variant_type.dart';
-import '../provider/dash_board_provider.dart';
+import '../provider/dashboard_provider.dart';
 import '../../../utility/extensions.dart';
 import '../../../widgets/multi_select_drop_down.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +153,7 @@ class ProductSubmitForm extends StatelessWidget {
                         displayItem: (Category? category) => category?.name ?? '',
                         onChanged: (newValue) {
                           if (newValue != null) {
-                            //TODO: should complete call  filterSubcategory
+                            context.dashBoardProvider.filterSubcategory(newValue);
                           }
                         },
                         validator: (value) {
@@ -175,7 +175,7 @@ class ProductSubmitForm extends StatelessWidget {
                         displayItem: (SubCategory? subCategory) => subCategory?.name ?? '',
                         onChanged: (newValue) {
                           if (newValue != null) {
-                            //TODO: should complete call filterBrand
+                            context.dashBoardProvider.filterBrand(newValue);
                           }
                         },
                         validator: (value) {
@@ -267,7 +267,7 @@ class ProductSubmitForm extends StatelessWidget {
                           displayItem: (VariantType? variantType) => variantType?.name ?? '',
                           onChanged: (newValue) {
                             if (newValue != null) {
-                              //TODO: should complete call filterVariant
+                              context.dashBoardProvider.filterVariant(newValue);
                             }
                           },
                           hintText: 'Select Variant type',
@@ -318,7 +318,7 @@ class ProductSubmitForm extends StatelessWidget {
                       // Validate and save the form
                       if (context.dashBoardProvider.addProductFormKey.currentState!.validate()) {
                         context.dashBoardProvider.addProductFormKey.currentState!.save();
-                        //TODO: should complete call submitProduct
+                        context.dashBoardProvider.submitProduct();
                         Navigator.of(context).pop();
                       }
                     },
