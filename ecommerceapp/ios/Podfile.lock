@@ -1,0 +1,191 @@
+PODS:
+  - Flutter (1.0.0)
+  - fluttertoast (0.0.2):
+    - Flutter
+    - Toast
+  - libphonenumber_plugin (0.0.1):
+    - Flutter
+    - PhoneNumberKit
+  - onesignal_flutter (5.2.0):
+    - Flutter
+    - OneSignalXCFramework (= 5.2.0)
+  - OneSignalXCFramework (5.2.0):
+    - OneSignalXCFramework/OneSignalComplete (= 5.2.0)
+  - OneSignalXCFramework/OneSignal (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalExtension
+    - OneSignalXCFramework/OneSignalLiveActivities
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalComplete (5.2.0):
+    - OneSignalXCFramework/OneSignal
+    - OneSignalXCFramework/OneSignalInAppMessages
+    - OneSignalXCFramework/OneSignalLocation
+  - OneSignalXCFramework/OneSignalCore (5.2.0)
+  - OneSignalXCFramework/OneSignalExtension (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalOutcomes
+  - OneSignalXCFramework/OneSignalInAppMessages (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalLiveActivities (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalLocation (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalUser
+  - OneSignalXCFramework/OneSignalNotifications (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalExtension
+    - OneSignalXCFramework/OneSignalOutcomes
+  - OneSignalXCFramework/OneSignalOSCore (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+  - OneSignalXCFramework/OneSignalOutcomes (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+  - OneSignalXCFramework/OneSignalUser (5.2.0):
+    - OneSignalXCFramework/OneSignalCore
+    - OneSignalXCFramework/OneSignalNotifications
+    - OneSignalXCFramework/OneSignalOSCore
+    - OneSignalXCFramework/OneSignalOutcomes
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - PhoneNumberKit (3.7.10):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.7.10)
+    - PhoneNumberKit/UIKit (= 3.7.10)
+  - PhoneNumberKit/PhoneNumberKitCore (3.7.10)
+  - PhoneNumberKit/UIKit (3.7.10):
+    - PhoneNumberKit/PhoneNumberKitCore
+  - razorpay-pod (1.3.8)
+  - razorpay_flutter (1.1.10):
+    - Flutter
+    - razorpay-pod
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - Stripe (23.22.1):
+    - StripeApplePay (= 23.22.1)
+    - StripeCore (= 23.22.1)
+    - StripePayments (= 23.22.1)
+    - StripePaymentsUI (= 23.22.1)
+    - StripeUICore (= 23.22.1)
+  - stripe_ios (0.0.1):
+    - Flutter
+    - Stripe (~> 23.22.0)
+    - StripeApplePay (~> 23.22.0)
+    - StripeFinancialConnections (~> 23.22.0)
+    - StripePayments (~> 23.22.0)
+    - StripePaymentSheet (~> 23.22.0)
+    - StripePaymentsUI (~> 23.22.0)
+  - StripeApplePay (23.22.1):
+    - StripeCore (= 23.22.1)
+  - StripeCore (23.22.1)
+  - StripeFinancialConnections (23.22.1):
+    - StripeCore (= 23.22.1)
+    - StripeUICore (= 23.22.1)
+  - StripePayments (23.22.1):
+    - StripeCore (= 23.22.1)
+    - StripePayments/Stripe3DS2 (= 23.22.1)
+  - StripePayments/Stripe3DS2 (23.22.1):
+    - StripeCore (= 23.22.1)
+  - StripePaymentSheet (23.22.1):
+    - StripeApplePay (= 23.22.1)
+    - StripeCore (= 23.22.1)
+    - StripePayments (= 23.22.1)
+    - StripePaymentsUI (= 23.22.1)
+  - StripePaymentsUI (23.22.1):
+    - StripeCore (= 23.22.1)
+    - StripePayments (= 23.22.1)
+    - StripeUICore (= 23.22.1)
+  - StripeUICore (23.22.1):
+    - StripeCore (= 23.22.1)
+  - Toast (4.1.1)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
+  - libphonenumber_plugin (from `.symlinks/plugins/libphonenumber_plugin/ios`)
+  - onesignal_flutter (from `.symlinks/plugins/onesignal_flutter/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
+
+SPEC REPOS:
+  trunk:
+    - OneSignalXCFramework
+    - PhoneNumberKit
+    - razorpay-pod
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripeFinancialConnections
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
+    - Toast
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  fluttertoast:
+    :path: ".symlinks/plugins/fluttertoast/ios"
+  libphonenumber_plugin:
+    :path: ".symlinks/plugins/libphonenumber_plugin/ios"
+  onesignal_flutter:
+    :path: ".symlinks/plugins/onesignal_flutter/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  razorpay_flutter:
+    :path: ".symlinks/plugins/razorpay_flutter/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  stripe_ios:
+    :path: ".symlinks/plugins/stripe_ios/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
+  webview_flutter_wkwebview:
+    :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  fluttertoast: e9a18c7be5413da53898f660530c56f35edfba9c
+  libphonenumber_plugin: 48bf4078546377eedaab4aa54978cd0f6fa23072
+  onesignal_flutter: 5ce68a29861960168e81101cb1bd685d264361de
+  OneSignalXCFramework: bdf74fdc06888f9466dc21e826fe1549ed143095
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+  PhoneNumberKit: 3d9a20cfe8ee68f35c2a3ae9474093133f72a8a1
+  razorpay-pod: c7064a37dd15fbc0e5f26776314c9a8842df1269
+  razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
+  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
+  Stripe: b65e9f748f8f51b51e015b0d72f5474dc0708788
+  stripe_ios: 433385aa051f8965915d495744946ee5a5d657db
+  StripeApplePay: 4a2fef6cd4e1e9b2c0849919fc7b3a9c5c3684b1
+  StripeCore: e1f6cd91d1487c0f6b5db81b42aec860420f75c9
+  StripeFinancialConnections: d223a44613e6982cedd552c5950edc9b4901c90a
+  StripePayments: 76144e9e6b5fee859954238a175f859043562659
+  StripePaymentSheet: a25d920bb3bb5e2580696476482dc7df9cb5e4e2
+  StripePaymentsUI: 66088abec88754bbdd522ef227dfdbb2265a653e
+  StripeUICore: b193c7d35e9cd1b04bc9ed4a6fb8c548fcee83fa
+  Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
+  webview_flutter_wkwebview: be0f0d33777f1bfd0c9fdcb594786704dbf65f36
+
+PODFILE CHECKSUM: a57f30d18f102dd3ce366b1d62a55ecbef2158e5
+
+COCOAPODS: 1.15.2

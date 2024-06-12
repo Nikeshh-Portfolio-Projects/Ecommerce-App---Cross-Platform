@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'bottom_navy_bar_item.dart';
 
-
 class AppData {
   const AppData._();
-
 
   static List<Color> randomColors = [
     const Color(0xFFFCE4EC),
@@ -17,7 +15,6 @@ class AppData {
     const Color(0xFFFFF8E1),
     const Color(0xFFECEFF1),
   ];
-
 
   static List<Color> randomPosterBgColors = [
     const Color(0xFFE70D56),
