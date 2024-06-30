@@ -45,16 +45,6 @@ jobs:
             ]
           }' > admin/.vercel/output/config.json
 
-      - name: Debug environment variables
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        run: |
-          echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}"
-          echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}"
-          echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}"
-
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
