@@ -18,8 +18,8 @@ jobs:
         with:
           flutter-version: '3.22.0'
 
-      - name: Upgrade and Install dependencies
-        run: cd admin && flutter upgrade && flutter pub get
+      - name: Install dependencies
+        run: cd admin && flutter pub get
 
       - name: Build Flutter web
         run: cd admin && flutter build web
