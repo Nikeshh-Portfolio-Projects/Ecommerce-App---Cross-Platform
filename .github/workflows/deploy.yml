@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: Production – ecommerce-app-cross-platform-admin
 
     steps:
       - name: Checkout repository
