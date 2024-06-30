@@ -45,6 +45,7 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
         run: |
           vercel deploy --prebuilt --token $VERCEL_TOKEN --prod --yes
+        working-directory: admin/build/web
 
       - name: Clear Flutter Cache
         run: cd admin && flutter pub cache repair
