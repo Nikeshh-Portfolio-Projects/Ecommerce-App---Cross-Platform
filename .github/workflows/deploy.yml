@@ -44,7 +44,7 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
         run: |
-          vercel deploy --prebuilt --token $VERCEL_TOKEN --prod --yes --project $VERCEL_PROJECT_ID --org $VERCEL_ORG_ID
+          vercel deploy --prebuilt --token $VERCEL_TOKEN --prod --yes --org $VERCEL_ORG_ID
 
       - name: Clear Flutter Cache
         run: cd admin && flutter pub cache repair
