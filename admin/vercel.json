@@ -1,17 +1,18 @@
 {
-    "version": 2,
-    "public": true,
-    "builds": [
-      {
-        "src": "build/web/**/*",
-        "use": "@vercel/static"
+  "version": 2,
+  "builds": [
+    {
+      "src": "pubspec.yaml",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build/web"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/build/web/index.html"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
