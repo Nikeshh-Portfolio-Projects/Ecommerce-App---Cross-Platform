@@ -30,8 +30,20 @@ jobs:
 
       - name: Prepare Vercel Output Directory
         run: |
-          mkdir -p admin/.vercel/output
-          cp -r admin/build/web/* admin/.vercel/output
+          mkdir -p admin/.vercel/output/static
+          cp -r admin/build/web/* admin/.vercel/output/static
+          echo '{
+            "version": 3,
+            "routes": [
+              {
+                "handle": "filesystem"
+              },
+              {
+                "src": "/(.*)",
+                "dest": "/index.html"
+              }
+            ]
+          }' > admin/.vercel/output/config.json
 
       - name: Debug environment variables
         env:
