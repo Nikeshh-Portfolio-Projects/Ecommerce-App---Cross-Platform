@@ -2,6 +2,7 @@
   "version": 2,
   "name": "ecommerce-app-cross-platform-admin",
   "projectId": "prj_Sh7JDtsounUvu1axbCaz2ag8d7AR",
+  "orgId": "team_DK8GAz4ztcb6hQkl2YEpLydV",
   "builds": [
     {
       "src": "build/web/**/*",
