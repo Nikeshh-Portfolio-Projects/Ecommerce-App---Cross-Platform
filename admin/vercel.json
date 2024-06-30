@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "orgId": "team_DK8GAz4ztcb6hQkl2YEpLydV",
   "builds": [
     {
       "src": "build/web/**/*",
