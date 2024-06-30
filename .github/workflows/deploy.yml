@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+  workflow_call:
+    secrets:
+      VERCEL_TOKEN:
+        required: true
+      VERCEL_PROJECT_ID:
+        required: true
 
 jobs:
   build:
