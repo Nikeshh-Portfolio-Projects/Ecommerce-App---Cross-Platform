@@ -19,16 +19,16 @@ jobs:
           flutter-version: '2.10.0' # Use the Flutter version you need
 
       - name: Install dependencies
-        run: flutter pub get
+        run: cd admin && flutter pub get
 
       - name: Build Flutter web
-        run: flutter build web
+        run: cd admin && flutter build web
 
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-args: '--prod'
-          working-dir: ./build/web
+          working-dir: ./admin/build/web
           project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           alias-domains: ${{ secrets.VERCEL_ALIAS_DOMAINS }}
