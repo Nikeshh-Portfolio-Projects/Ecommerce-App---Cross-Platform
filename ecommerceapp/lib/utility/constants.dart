@@ -1,4 +1,4 @@
-const MAIN_URL = 'http://localhost:3000';
+const MAIN_URL = 'https://ecommerce-app-cross-platform-server.vercel.app';
 
 const FAVORITE_PRODUCT_BOX = 'FAVORITE_PRODUCT_BOX';
 const USER_INFO_BOX = 'USER_INFO_BOX';
