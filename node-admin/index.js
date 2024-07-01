@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 const dotenv = require('dotenv')
+const path = require('path');
 
 dotenv.config()
 
