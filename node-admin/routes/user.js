@@ -26,7 +26,8 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid name or password." });
         }
         // Check if the password is correct
-        if (user.password !== password) {
+        const encryptedPassword = encryptData(password);
+        if (user.password !== encryptedPassword) {
             return res.status(401).json({ success: false, message: "Invalid name or password." });
         }
 
@@ -60,7 +61,8 @@ router.post('/register', asyncHandler(async (req, res) => {
     }
 
     try {
-        const user = new User({ name, password });
+        const encryptedPassword = encryptData(password);
+        const user = new User({ name, encryptedPassword });
         const newUser = await user.save();
         res.json({ success: true, message: "User created successfully.", data: null });
     } catch (error) {
