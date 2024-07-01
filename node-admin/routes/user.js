@@ -62,7 +62,7 @@ router.post('/register', asyncHandler(async (req, res) => {
 
     try {
         const encryptedPassword = encryptData(password);
-        const user = new User({ name, encryptedPassword });
+        const user = new User({ name: name, password: encryptedPassword });
         const newUser = await user.save();
         res.json({ success: true, message: "User created successfully.", data: null });
     } catch (error) {
