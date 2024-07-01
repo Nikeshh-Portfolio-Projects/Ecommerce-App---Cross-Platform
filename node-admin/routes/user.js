@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 const User = require('../model/user');
+import { encryptData } from './encryption.js'
 
 // Get all users
 router.get('/', asyncHandler(async (req, res) => {
