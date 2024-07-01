@@ -28,10 +28,13 @@ class SubCategoryHeader extends StatelessWidget {
   }
 }
 
-class ProfileCard extends StatelessWidget {
-  const ProfileCard({
-    Key? key,
-  }) : super(key: key);
+class ProfileCard extends StatefulWidget {
+  @override
+  _ProfileCardState createState() => _ProfileCardState();
+}
+
+class _ProfileCardState extends State<ProfileCard> {
+  String? selectedOption;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +57,23 @@ class ProfileCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-            child: Text("Angelina Jolie"),
+            child: DropdownButton<String>(
+                value: selectedOption ?? 'Profile',
+                icon: Icon(Icons.keyboard_arrow_down),
+                onChanged: (String? newValue) {
+                  if (newValue == 'Logout') {
+                    context.userProvider.logOutUser();
+                  }
+                },
+                items: <String>['Profile', 'Logout']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+              ),
           ),
-          Icon(Icons.keyboard_arrow_down),
         ],
       ),
     );
