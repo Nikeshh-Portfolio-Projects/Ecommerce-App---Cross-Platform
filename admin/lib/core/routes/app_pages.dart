@@ -1,8 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../screens/main/main_screen.dart';
 
-
-
 class AppPages {
   static const HOME = '/';
 
@@ -12,6 +10,5 @@ class AppPages {
       fullscreenDialog: true,
       page: () => MainScreen()
     ),
-
   ];
 }

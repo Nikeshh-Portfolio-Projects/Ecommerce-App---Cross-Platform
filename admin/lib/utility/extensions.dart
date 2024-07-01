@@ -1,3 +1,5 @@
+import 'package:admin/screens/login/provider/user_provider.dart';
+
 import '../screens/brands/provider/brand_provider.dart';
 import '../screens/category/provider/category_provider.dart';
 import '../screens/coupon_code/provider/coupon_code_provider.dart';
@@ -17,6 +19,7 @@ import '../screens/variants_type/provider/variant_type_provider.dart';
 extension Providers on BuildContext {
   DataProvider get dataProvider => Provider.of<DataProvider>(this, listen: false);
   MainScreenProvider get mainScreenProvider => Provider.of<MainScreenProvider>(this, listen: false);
+  UserProvider get userProvider => Provider.of<UserProvider>(this, listen: false);
   CategoryProvider get categoryProvider => Provider.of<CategoryProvider>(this, listen: false);
   SubCategoryProvider get subCategoryProvider => Provider.of<SubCategoryProvider>(this, listen: false);
   BrandProvider get brandProvider => Provider.of<BrandProvider>(this, listen: false);

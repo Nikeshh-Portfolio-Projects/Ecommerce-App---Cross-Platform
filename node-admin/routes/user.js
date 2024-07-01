@@ -32,8 +32,12 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid name or password." });
         }
 
+        if (process.env.ADMIN_EMAIL == user.name) {
+            user.type = 'admin';
+        }
+
         // Authentication successful
-        res.status(200).json({ success: true, message: "Login successful.",data: user });
+        res.status(200).json({ success: true, message: "Login successful.", data: user });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
     }

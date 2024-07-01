@@ -6,3 +6,5 @@ const bgColor = Color(0xFF212332);
 const defaultPadding = 16.0;
 
 const MAIN_URL = 'https://ecommerce-app-cross-platform-server.vercel.app';
+
+const USER_INFO_BOX = 'USER_INFO_BOX';
