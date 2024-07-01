@@ -22,7 +22,7 @@ class PosterSection extends StatelessWidget {
               return Padding(
                 padding: const EdgeInsets.only(right: 20),
                 child: Container(
-                  width: 300,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: AppData.randomPosterBgColors[index],
                     borderRadius: BorderRadius.circular(15),
