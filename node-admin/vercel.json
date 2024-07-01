@@ -5,6 +5,7 @@
     ],
     "routes": [
       { "src": "/(.*)", "dest": "index.js" }
-    ]
+    ],
+    "public": "public"
   }
   
