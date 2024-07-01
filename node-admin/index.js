@@ -12,9 +12,9 @@ const app = express();
 app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 // Setting static folder path
-app.use('/image/products', express.static('public/products'));
-app.use('/image/category', express.static('public/category'));
-app.use('/image/poster', express.static('public/poster'));
+app.use('/image/products', express.static(path.join(__dirname, 'public/images/products')));
+app.use('/image/category', express.static(path.join(__dirname, 'public/images/category')));
+app.use('/image/poster', express.static(path.join(__dirname, 'public/images/posters')));
 
 const URL = process.env.MONGODB_URI || 'mongodb://localhost:27017/admin';
 mongoose.connect(URL);
