@@ -23,7 +23,7 @@ jobs:
         run: cd admin && flutter pub get
 
       - name: Build Flutter web
-        run: cd admin && flutter build web
+        run: cd admin && flutter build web --web-renderer html
 
       - name: Install Vercel CLI
         run: npm install -g vercel
